@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace OilStationMVC.ViewModels
+{
+    public class AccountStatementViewModel
+    {
+        public int Id{ get; set; }
+        public int BranchId { get; set; }
+        public int JournalType { get; set; }
+        public string JournalName { get; set; } 
+        public string dDate{ get; set; }
+        public int SubledgerTypeId { get; set; }
+        public string SubledgerTypeName { get; set; }
+        public int SubledgerId { get; set; }
+        public string SubledgerName { get; set; }
+        public decimal Credit { get; set; }
+        public decimal Debit { get; set; }
+        public decimal Amount { get; set; }
+        public decimal Balance { get; set; }
+        public string Telephone { get; set; }
+        public int CustomerTypeId { get; set; }
+    }
+}

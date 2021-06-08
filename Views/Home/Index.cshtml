@@ -1,0 +1,177 @@
+﻿@using OilStationMVC.Views.Shared.Resources
+@{
+    ViewData["Title"] = SiteResource.Home;
+}
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3><span id="CustomerCredit">150</span>  </h3>
+                        <p> @SiteResource.Total_Customers_Credit</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3><span id="CustomerDebit">150</span>  </h3>
+                        <p>@SiteResource.Total_Customers_Debit</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3><span id="FinalCustomerBalance">150</span>  </h3>
+                        <p>@SiteResource.Total_Customers_Final_Balance</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3><span id="FinalCustomerBalance">150</span>  </h3>
+                        <p>Final Balance</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- BAR CHART CompanyInvoicesVSCompanyDepositbarChart -->
+                <div class="card card-success ">
+                    <div class="card-header">
+                        <h3 class="card-title">@SiteResource.CompanyInvoicesVSCompanyDepositbarChart</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart">
+                            <canvas id="CompanyInvoicesVSCompanyDepositbarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PIE CHART ProductBalancepieChart-->
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">@SiteResource.Products_Balance</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            @*<button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>*@
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="ProductBalancepieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- BAR CHART MazotInvoicesVSDepositbarChart-->
+                <div class="card card-success ">
+                    <div class="card-header">
+                        <h3 class="card-title">@SiteResource.MazotInvoicesVSDepositbarChart</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart">
+                            <canvas id="MazotInvoicesVSDepositbarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BAR CHART -->
+                <div class="card card-success ">
+                    <div class="card-header">
+                        <h3 class="card-title">bar chart</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart">
+                            <canvas id="barchart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- /.content -->
+@section Scripts {
+    <script src="~/assets/src/ManagerJs.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            setCustomerBalance();
+           // Manager.DrawBarChart("CompanyInvoicesVSCompanyDepositbarChart", "https://localhost:44393/api/Balance");
+           Manager.DrawBarChart("CompanyInvoicesVSCompanyDepositbarChart", "/Home/CompanyInvoicesVSdepositsAsync");
+            Manager.DrawBarChart("MazotInvoicesVSDepositbarChart", "/Home/MazotInvoicesVSdepositsAsync");
+            Manager.DrawPieChrt("ProductBalancepieChart", "pie", "/Home/LoadProductsBalanceAsync");
+
+        });
+        function setCustomerBalance() {
+            var parameter = {
+                SubledgerTypeId: "1"
+            };
+            var obj = Manager.GetAllData("/Home/SubledgerBalance", parameter);
+            console.log(obj);
+            $("#CustomerCredit").html(obj.Credit);
+            $("#CustomerDebit").html(obj.Debit);
+            $("#FinalCustomerBalance").html(obj.Balance);
+        }
+
+        setTimeout(function () {
+            window.location.reload(1);
+        }, 600000);
+    </script>
+
+
+}

@@ -1,0 +1,83 @@
+﻿@model OilStationMVC.Models.Login
+@using OilStationMVC.CustomHtmlHelper
+@using OilStationMVC.Controllers
+@{
+    ViewBag.Title = "xLogin";
+    Layout = "~/Views/Shared/LoginLayout.cshtml";
+}
+
+ <div class="card-body">
+
+    <div class="text-center mb-3">
+        <i class="icon-key icon-2x text-slate-300 border-slate-300 border-3 rounded-round p-3 mb-3 mt-1">
+
+        </i>
+        <h5 class="mb-0"><span>@Resources.PagesResource.LoginToYourAccount</span></h5>
+        <span class="d-block text-muted">@Resources.PagesResource.Enteryourcredentialsbelow</span>
+    </div>
+    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+    {
+        <form id="form1" runat="server">
+
+            <div class="alert alert-success alert-bordered d-none" id="LoginedStatus" runat="server"></div>
+            <div class="form-group form-group-feedback form-group-feedback-left">
+                
+
+                @Html.DropDownListFor(m => m.UserName,
+                     Lookups.Users(),
+                     "Select User",
+                     new { @class = "form-control"  })
+                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+
+
+                <div class="form-control-feedback">
+                    <i class="icon-user text-muted"></i>
+                </div>
+            </div>
+
+            <div class="form-group form-group-feedback form-group-feedback-left"> 
+                @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+                <div class="form-control-feedback">
+                    <i class="icon-lock2 text-muted"></i>
+                </div>
+            </div>
+
+
+
+
+            <div class="my-2 text-center">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-outline bg-primary text-primary border-primary  ">
+                        @Html.RadioButtonFor(m => m.Language, "A")
+                        عربي
+                    </label>
+
+                    <label class="btn btn-outline bg-primary text-primary border-primary active">
+                        @Html.RadioButtonFor(m => m.Language, "E")
+                        English
+                    </label>
+
+
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" id="su" name="btnSubmit" value="Sign Up" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal" onclick="GetData" />
+            </div>
+            <div class="form-group">
+
+                <div class="text-center"> 
+                    @Html.ActionLink("Create New User", "Index", "Users", new { area = "Admin" }, null)
+                </div>
+
+                <div class="text-center">
+                    @Html.ActionLink("Forget Your Password ?", "RecoverPassword", "Login")
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                @Html.ValidationSummary(false, "", new { @class = "text-danger d-none" })
+            </div>
+        </form>
+    }
+
+</div> 
+

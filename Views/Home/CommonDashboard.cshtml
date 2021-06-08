@@ -1,0 +1,16 @@
+﻿@model List<OilStationMVC.ViewModels.CommonBalanceViewModel>
+<div class="row">
+
+    @if (Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                @Html.Partial("_CommonDashboard", item)
+            </div>
+        }
+
+    }
+
+</div>
+

@@ -1,0 +1,103 @@
+﻿@model OilStationMVC.ViewModels.FinancialViewModel
+@using OilStationMVC.CommonFolder
+@using OilStationMVC.Views.Shared.Resources
+@{
+    int SubledgerType = OilStationMVC.Helper.ObjectConverter.CInt(ViewBag.SubledgerTypeId);
+    string JournalId = OilStationMVC.Helper.ObjectConverter.Cstr(ViewBag.JournalType);
+    string JournalName = "-";
+    if (JournalId == "1")
+    {
+        JournalName = SiteResource.Create_New_Voucher;
+    }
+    if (JournalId == "2")
+    {
+        JournalName = SiteResource.Create_New_Cashing;
+    }
+    if (JournalId == "6")
+    {
+        JournalName = SiteResource.Create_New_Car_Custody;
+    }
+    if (JournalId == "7")
+    {
+        JournalName = SiteResource.Create_New_Station_Deposit;
+    }
+    if (JournalId == "10")
+    {
+        JournalName = SiteResource.Create_New_Expenses;
+    }
+    if (JournalId == "13")
+    {
+        ViewData["Title"] = SiteResource.Create_New_Deposit_In_Box;
+    }
+    if (JournalId == "8")
+    {
+        JournalName = SiteResource.Create_New_Cash_From_Box;
+    }
+    if (JournalId == "11")
+    {
+        JournalName = SiteResource.Create_New_Mazot_Bank_Deposit;
+
+    }
+    ViewData["Title"] = JournalName;
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header  ">
+                <h3 class="card-title "> @JournalName </h3>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="card-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.JournalType, new { htmlAttributes = new { @class = "form-control", @Value = JournalId } })
+                @Html.HiddenFor(model => model.SubledgerTypeId, new { htmlAttributes = new { @class = "form-control", @Value = SubledgerType } }) 
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SubledgerId, htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-12">
+                        @Html.DropDownListFor(m => m.SubledgerId,
+                                 Lookups.CostCenterList(SubledgerType),
+                                 SiteResource.Please_Select,
+                                 new { @class = "form-control"  })
+                        @Html.ValidationMessageFor(model => model.SubledgerId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.dDate, htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.dDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.dDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Desc, htmlAttributes: new { @class = "control-label" })
+                    <div class="col-md-12">
+                        @Html.EditorFor(model => model.Desc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Desc, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+                <div class="card-footer">
+                    <input type="submit" value="@SiteResource.Save" class="btn btn-primary" />
+                    @Html.ActionLink(SiteResource.Back_To_List, "Index", new { JournalType= @JournalId, SubledgerTypeId= @SubledgerType }, new { @class = "btn btn-default" })
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

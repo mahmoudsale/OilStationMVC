@@ -1,0 +1,69 @@
+﻿
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>AcPro</title>
+
+    <!-- Stylesheets -->
+    <link href="../acpro_html/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css" />
+    <link href="../acpro_html/assets/fonts/fontawesome/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="../acpro_html/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../acpro_html/assets/css/bootstrap_cu.min.css" rel="stylesheet" type="text/css" />
+    <link href="../acpro_html/assets/css/layout.min.css" rel="stylesheet" type="text/css" />
+    <link href="../acpro_html/assets/css/components.min.css" rel="stylesheet" type="text/css" />
+    <link href="../acpro_html/assets/css/bs4.min.css" rel="stylesheet" type="text/css" />
+    <link href="../acpro_html/assets/css/colors.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="../acpro_html/assets/css/main.css" rel="stylesheet" type="text/css" />
+    <!-- Stylesheets -->
+    <!-- JS files -->
+    <script src="../acpro_html/assets/js/main/jquery.min.js"></script>
+    <script src="../acpro_html/assets/js/main/bootstrap.bundle.min.js"></script>
+    <script src="../acpro_html/assets/js/plugins/loaders/blockui.min.js"></script>
+    <script src="../acpro_html/assets/js/plugins/extensions/rowlink.js"></script>
+    <script src="../acpro_html/assets/js/plugins/forms/styling/uniform.min.js"></script>
+    <script src="../acpro_html/assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script src="../acpro_html/assets/js/app.js"></script>
+    <script src="assets/js/custom.js"></script>
+    @Scripts.Render(BundleConfig.dbJsBundle)
+    <!-- JS files -->
+</head>
+<body>
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+
+            <!-- Content area -->
+            <div class="content d-flex justify-content-center align-items-center">
+
+                <!-- Login form -->
+                <div class="login-form">
+                    <div class="card mb-0">
+                        @RenderBody()
+                    </div>
+                </div>
+                <!-- /login form -->
+
+            </div>
+            <!-- /content area -->
+
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+
+
+</body>
+
+</html>

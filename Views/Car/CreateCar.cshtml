@@ -1,0 +1,156 @@
+﻿@model OilStationMVC.Models.Car
+@*@model IEnumerable<OilStationMVC.Models.Car>*@
+@{
+                /**/
+
+                ViewBag.Title = "CreateCar";
+                Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="flex-fill overflow-auto">
+    <div class="card">
+        <div class="nav-tabs-responsive bg-light border-top">
+            <div class="alert alert-success alert-bordered d-none " clientidmode="Static" id="ActionStatus" runat="server">gg</div>
+            <ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
+                <li class="nav-item"><a href="#overview" class="nav-link active" data-toggle="tab"><i class="far fa-info mr-1"></i><span id="HTempleteName" runat="server">Create New</span></a></li>
+                <li class="nav-item"><a href="#history" class="nav-link selected" data-toggle="tab"><i class="far fa-file-alt mr-1"></i>List </a></li>
+            </ul>
+
+        </div>
+
+        <div class="tab-content">
+
+            <div class="tab-pane fade show active" id="overview">
+                @using (Html.BeginForm("CreateCar", "Car", FormMethod.Post))
+                {
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @*<div class="form-group">
+                                    <label id="CarId">Car Id</label>
+                                    @Html.TextBoxFor(m => m.Id, (string)ViewBag.NextCode, new { @class = "form-control" })
+                                </div>*@
+                                <div class="form-group">
+                                    <label id="CarId">Car Id</label>
+                                    @Html.TextBoxFor(m => m.Id, (string)ViewBag.NextCode, new { @class = "form-control" })
+                                    @*@Html.TextBox("CarId", null, new { @class = "form-control" })*@
+                                    @*<input type="text" id="car" name="carid" value="" />*@
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.CarName)
+                                    @Html.TextBoxFor(m => m.CarName, null, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.CarName, "required", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Driver)
+                                    @Html.DropDownListFor(m => m.Driver, new SelectList(ViewBag.DriverList, "Id", "sName"), new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Driver, "required", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.OpeningBalance)
+                                    @Html.TextBoxFor(m => m.OpeningBalance, null, new { placeholder = "Opening Balance", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.OpeningBalance, "required", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.OpeningBalanceState)
+                                    @Html.DropDownList("OpeningBalanceState",
+                                            new List<SelectListItem>
+                                                              {
+                                            new SelectListItem{Text="Debit", Value="1"},
+                                            new SelectListItem{Text="Credit", Value="2"}},
+                                            "Please select", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.OpeningBalanceState, "required", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.OpeningBalanceDate)
+                                    @Html.TextBoxFor(m => m.OpeningBalanceDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                    @Html.ValidationMessageFor(m => m.OpeningBalanceDate, "required", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <button ID="btn_Save" runat="server" class="btn bg-success" Text="<%$ Resources:PagesResource,btn_Save%>" name="action:CreateCar"> Save</button>
+
+                        @using (Html.BeginForm("dd", "Car", FormMethod.Post))
+                        {
+                            <button ID="btn_Cancel" runat="server" class="btn bg-danger" Text="<%$ Resources:PagesResource,btn_Cancel%>"> Cancel</button>
+                        }
+                    </div>
+                }
+            </div>
+
+            @if (TempData["UserMessage"] != null)
+            {
+                <script>
+                    $("#ActionStatus").removeClass("d-none");
+                    $("#ActionStatus").text("Done Successfuly");
+                </script>
+            }
+            <div class="tab-pane fade selected" id="history">
+                @{
+
+                    @Html.Action("CarList", "Car");
+                }
+                @*<div class="card-body">
+                        <div class="table-responsive">
+                            <table id="historyTable" class="table  dt-datatable table-striped table-hover">
+                                <thead id="TableHeader" runat="server">
+
+                                </thead>
+                                <tbody id="TableBody" runat="server">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </di*@v>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $.extend($.fn.dataTable.defaults, {
+            autoWidth: true,
+            columnDefs: [{
+                orderable: false,
+                targets: [1]
+            }],
+            dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+            filter: true,
+            pageLength: 10,
+            lengthChange: false,
+            language: {
+                search: '<span>Filter:</span> _INPUT_',
+                searchPlaceholder: 'Type to filter...',
+                lengthMenu: '<span>Show:</span> _MENU_',
+                paginate: { 'first': 'First', 'last': 'Last', 'next': $('html').attr('dir') == 'rtl' ? '&larr;' : '&rarr;', 'previous': $('html').attr('dir') == 'rtl' ? '&rarr;' : '&larr;' }
+            }
+        });
+
+
+    });
+    $('.dt-datatable').DataTable();
+</script>
+

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<OilStationMVC.Models.menu>
+<li class="nav-item has-treeview">
+    @ShowTree(Model)
+</li>
+@helper ShowTree(IEnumerable<OilStationMVC.Models.menu> Model)
+{
+    foreach (var item in Model)
+    {
+        if (item.IsForm)
+        {
+            if (item.Controller == "Report")
+            {
+                <li class="nav-item">
+                    <a href="@Url.Action(@item.Action, item.Controller, new { ReportName=item.MainReportName})" class="nav-link">
+                        <i class="far fa-file nav-icon"></i>
+                        <p>@item.Name</p>
+                    </a>
+                </li>
+            }
+
+            else if (!string.IsNullOrEmpty(item.FormParameter))
+            {
+
+                if (item.Controller == "Financial")
+                {
+                    string FormParameter = item.FormParameter;
+                    string[] arr = FormParameter.Split('&');
+                    string JournalType = arr[0].Split('=')[1];
+                    string SubledgerTypeId = arr[1].Split('=')[1];
+                    var RouteObject = new
+                    {
+                        JournalType = JournalType,
+                        SubledgerTypeId = SubledgerTypeId
+                    };
+                    <li class="nav-item">
+                        <a href="@Url.Action(@item.Action, item.Controller, RouteObject)" class="nav-link">
+                            <i class="far fa-edit nav-icon"></i>
+                            <p>@item.Name</p>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a href="@Url.Action(@item.Action, item.Controller, new { JournalType=item.FormParameter.Split('=')[1]})" class="nav-link">
+                            <i class="far fa-edit nav-icon"></i>
+                            <p>@item.Name</p>
+                        </a>
+                    </li>
+                }
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a href="@Url.Action(@item.Action, item.Controller)" class="nav-link">
+                        <i class="far fa-edit nav-icon"></i>
+                        <p>@item.Name</p>
+                    </a>
+                </li>
+            }
+        }
+        else
+        {
+            <li class="nav-item nav-item-submenu " id="@item.id">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-folder"></i>
+                    <p>
+                        @item.Name
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                @if (item.LstChild.Any())
+                {
+                    <ul class="nav nav-treeview">
+                        @ShowTree(item.LstChild)
+                    </ul>
+                }
+            </li>
+        }
+    }
+}

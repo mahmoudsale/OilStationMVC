@@ -1,0 +1,82 @@
+﻿@model IList<OilStationMVC.Models.ChargeArea>
+@using OilStationMVC.Views.Shared.Resources
+@{
+    ViewData["Title"] = SiteResource.Charge_Areas_List;
+}
+
+<div class="card">
+    <div class="card-header">
+        @Html.ActionLink(SiteResource.Create_New, "Create", "ChargeArea", null, new { @class = "btn btn-primary" })
+    </div>
+    <div class="card-body">
+        <table id="example2" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>@SiteResource.Code </th>
+                    <th>@SiteResource.Name </th>
+                    <th>@SiteResource.Unit_Cost </th>
+                    <th>@SiteResource.Company </th> 
+                    <th>@SiteResource.Edit</th>
+                    <th>@SiteResource.Details</th>
+                    <th>@SiteResource.Delete</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Cost</td>
+                    <td>@item.Company.Name</td>
+                    <td>
+                        @Html.ActionLink(SiteResource.Edit, "Edit", new { Id = item.Id }, htmlAttributes: new { @class = "btn btn-primary" })
+                    </td>
+                    <td>
+                        @Html.ActionLink(SiteResource.Details, "Details", new { Id = item.Id }, htmlAttributes: new { @class = "btn btn-info" })
+                    </td>
+                    <td>
+                        <span id="SpanDelete_@item.Id">
+                            <a href="#" class="btn btn-danger" onclick="ConfirmDelete('@item.Id',true)">@SiteResource.Delete</a>
+                        </span>
+                        @using (Html.BeginForm("Delete", "ChargeArea", new { Id = item.Id }, FormMethod.Post))
+                        {
+                            <span id="SpanConfirmDelete_@item.Id" style="display:none">
+                                <span><strong>@SiteResource.Are_You_Sure_To_Delete</strong></span>
+                                <input type="submit" value="@SiteResource.Yes" class="btn btn-danger" />
+                                <a href="#" class="btn btn-primary" onclick="ConfirmDelete('@item.Id',false)">@SiteResource.No</a>
+                            </span>
+                        }
+                    </td>
+                </tr>
+                    }
+                }
+                else
+
+                {
+                    <tr>
+                        <td> No Car Listed</td>
+                    </tr>
+                }
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>@SiteResource.Code </th>
+                    <th>@SiteResource.Name </th>
+                    <th>@SiteResource.Unit_Cost </th>
+                    <th>@SiteResource.Company </th>
+                    <th>@SiteResource.Edit</th>
+                    <th>@SiteResource.Details</th>
+                    <th>@SiteResource.Delete</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/assets/src/EnableDataTable.js"></script>
+}

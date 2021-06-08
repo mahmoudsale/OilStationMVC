@@ -1,0 +1,159 @@
+﻿@model  OilStationMVC.ViewModels.CustomerInvoiceViewModel
+@using OilStationMVC.CommonFolder
+@using OilStationMVC.Views.Shared.Resources
+@{
+    ViewData["Title"] = SiteResource.Edit_Customer_Invoice;
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header  ">
+                <h3 class="card-title "> @SiteResource.Edit_Customer_Invoice </h3>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" }  })
+                                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.dDate, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.dDate, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.dDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.CustomerId, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.DropDownListFor(m => m.CustomerId,
+                                         Lookups.Customers(),
+                                         SiteResource.Please_Select,
+                                         new { @class = "form-control"  })
+                                @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.SolarQTY, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.SolarQTY, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SolarQTY, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.SolarUnitPrice, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.SolarUnitPrice, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.SolarUnitPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.SolarTotalPrice, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.SolarTotalPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.SolarTotalPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.Oil80QTY, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Oil80QTY, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Oil80QTY, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.Oil80UnitPrice, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Oil80UnitPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Oil80UnitPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.Oil80TotalPrice, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Oil80TotalPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Oil80TotalPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.Oil92QTY, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Oil92QTY, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Oil92QTY, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.Oil92UnitPrice, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Oil92UnitPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Oil92UnitPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.Oil92TotalPrice, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Oil92TotalPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Oil92TotalPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.Oil95QTY, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Oil95QTY, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Oil95QTY, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.Oil95UnitPrice, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Oil95UnitPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Oil95UnitPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.Oil95TotalPrice, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Oil95TotalPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Oil95TotalPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.TotalPrice, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            @Html.LabelFor(model => model.Desc, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Desc, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Desc, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input type="submit" value="@SiteResource.Save" class="btn btn-primary" />
+                    @Html.ActionLink(SiteResource.Back_To_List, "Index", null, new { @class = "btn btn-default" })
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/assets/src/ManagerJs.js"></script>
+    <script src="~/assets/src/CustomerInvoice.js"></script>
+}

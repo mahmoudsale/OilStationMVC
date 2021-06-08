@@ -1,0 +1,21 @@
+﻿.user-panel, .user-panel .info {
+    overflow: hidden;
+    white-space: nowrap;
+    overflow: unset;
+}
+
+    .user-panel, .user-panel .info {
+        overflow: hidden;
+        white-space: nowrap;
+        overflow: unset;
+    }
+ 
+
+.dropdown-menu.dropdown-menu-right.show {
+    position: absolute;
+    transform: translate3d(0px, 36px, 0px);
+    top: 0px;
+    left: 0px;
+    will-change: transform;
+    width: -moz-available;
+}

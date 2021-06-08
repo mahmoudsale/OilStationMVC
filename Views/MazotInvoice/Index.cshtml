@@ -1,0 +1,56 @@
+﻿@model IEnumerable<OilStationMVC.Models.MazotInvoice>
+@using OilStationMVC.Views.Shared.Resources
+@{
+    ViewData["Title"] = SiteResource.Mazot_Invoice_List;
+}
+@{
+    string JournalId = OilStationMVC.Helper.ObjectConverter.Cstr(ViewBag.JournalType);
+    if (JournalId == "3")
+    {
+        ViewData["Title"] = @SiteResource.Mazot_Invoice_List;
+    }
+    if (JournalId == "20")
+    {
+        ViewData["Title"] = @SiteResource.Mazot_Customer_Invoice_List;
+    }
+}
+<div class="card">
+    <div class="card-header">
+        @Html.ActionLink(SiteResource.Create_New, "Create", "MazotInvoice", new { JournalType = @JournalId }, new { @class = "btn btn-primary" })
+    </div>
+    <div class="card-body">
+        <table id="example2" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="hidden">@SiteResource.Code</th>
+                    <th>InvoiceNo</th>
+                    <th>@SiteResource.Date</th>
+                    <th>@SiteResource.Company</th>
+                    <th>@SiteResource.Charge_Area</th>
+                    <th>@SiteResource.Customer</th>
+                    @*<th>@SiteResource.Car</th>
+                    <th>@SiteResource.Driver_Name</th>*@
+
+                    <th>@SiteResource.Quantity</th>
+                    <th>@SiteResource.Total_Price</th>
+                    @*<th>@SiteResource.Description</th>*@
+                    <th>@SiteResource.Edit</th>
+                    <th>@SiteResource.Details</th>
+                    <th>@SiteResource.Delete</th>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div> 
+@section Scripts {
+    <script>
+         var JourlType =@ViewBag.JournalType;
+         var parms = {
+            JournalType: JourlType,
+        }
+          var EditUrl = "@Url.Action("Edit", "Financial", new {id="IIDD", JourlType="IIJJ" })";
+    </script>
+    <script src="~/assets/src/MazotInvoiceList.js"></script>
+    @*<script src="~/assets/src/CustomJavaScript.js"></script>*@
+}

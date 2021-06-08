@@ -1,0 +1,48 @@
+﻿@model IEnumerable<OilStationMVC.Models.Driver>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+@using (Html.BeginForm("CreateDriver", "Driver"))
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sName)
+            </th>
+
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.sName)
+                </td>
+
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
+                    <a href="#" id="@item.Id" onclick="GetSelectedRow">Select</a>
+                    <button onclick="GetSelectedRow"></button>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <button ID="btn_Save" runat="server" class="btn bg-success" Text="<%$ Resources:PagesResource,btn_Save%>" name="btn_Save"> Save</button>
+    @*<input type="submit" value="Ok" />*@
+}
+<script type="text/javascript">
+    function GetSelectedRow() {
+        $('#MyModel').modal('hide');
+
+    }
+</script>

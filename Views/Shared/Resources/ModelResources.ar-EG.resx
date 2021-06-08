@@ -1,0 +1,522 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Adress" xml:space="preserve">
+    <value>العنوان</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>القيمة / المبلغ</value>
+  </data>
+  <data name="Amount Is Required" xml:space="preserve">
+    <value>القيمة / المبلغ مطلوب</value>
+  </data>
+  <data name="AreaTransport" xml:space="preserve">
+    <value>منطقة النقل</value>
+  </data>
+  <data name="AreaTransport Amount" xml:space="preserve">
+    <value>إجمالي تكلفة النقل</value>
+  </data>
+  <data name="AreaTransport Amount Is Required" xml:space="preserve">
+    <value>إجمالي تكلفة النقل مطلوبة</value>
+  </data>
+  <data name="AreaTransport Is Required" xml:space="preserve">
+    <value>منطقة النقل مطلوبة</value>
+  </data>
+  <data name="AreaTransport Unit" xml:space="preserve">
+    <value>تكلفة نقل الوحدة</value>
+  </data>
+  <data name="AreaTransport Unit Is Required" xml:space="preserve">
+    <value>تكلفة نقل الوحدة مطلوبة</value>
+  </data>
+  <data name="Buy Unit Price" xml:space="preserve">
+    <value>سعر شراء الوحدة</value>
+  </data>
+  <data name="Buy Unit Price Is Required" xml:space="preserve">
+    <value>سعر شراء الوحدة مطلوبة</value>
+  </data>
+  <data name="Car" xml:space="preserve">
+    <value>الشاحنة</value>
+  </data>
+  <data name="Car Id" xml:space="preserve">
+    <value>كود الشاحنة</value>
+  </data>
+  <data name="Car Is Required" xml:space="preserve">
+    <value>الشاحنة مطلوبة</value>
+  </data>
+  <data name="Car Name" xml:space="preserve">
+    <value>إسم الشاحنة</value>
+  </data>
+  <data name="Car Name Is Required" xml:space="preserve">
+    <value>إسم الشاحنة مطلوب</value>
+  </data>
+  <data name="Charge Area" xml:space="preserve">
+    <value>منطقة الشحن</value>
+  </data>
+  <data name="Charge Area Is Required" xml:space="preserve">
+    <value>منطقة الشحن مطلوبة</value>
+  </data>
+  <data name="Charge Customer" xml:space="preserve">
+    <value>عميل التحميل</value>
+  </data>
+  <data name="Charge Customer Is Required" xml:space="preserve">
+    <value>عميل التحميل مطلوب</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>كود</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>الشركة</value>
+  </data>
+  <data name="Company Is Required" xml:space="preserve">
+    <value>الشركة مطلوبة</value>
+  </data>
+  <data name="Cost Center" xml:space="preserve">
+    <value>مركز التكلفة</value>
+  </data>
+  <data name="Cost Center Is Required" xml:space="preserve">
+    <value>مركز التكلفة مطلوب</value>
+  </data>
+  <data name="Current Balance" xml:space="preserve">
+    <value>الرصيد الحالي</value>
+  </data>
+  <data name="Custody Type" xml:space="preserve">
+    <value>نوع العهدة</value>
+  </data>
+  <data name="Custody Type Is Required" xml:space="preserve">
+    <value>نوع العهدة مطلوبة</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>العميل</value>
+  </data>
+  <data name="Customer Adress" xml:space="preserve">
+    <value>عنوان العميل</value>
+  </data>
+  <data name="Customer Fee" xml:space="preserve">
+    <value>رسوم اضافية للعميل</value>
+  </data>
+  <data name="Customer Is Required" xml:space="preserve">
+    <value>العميل مطلوب</value>
+  </data>
+  <data name="Customer Name" xml:space="preserve">
+    <value>إسم العميل</value>
+  </data>
+  <data name="Customer Name Is Required" xml:space="preserve">
+    <value>اسم العميل مطلوب</value>
+  </data>
+  <data name="Customer Qty" xml:space="preserve">
+    <value>كمية العميل</value>
+  </data>
+  <data name="Customer Qty Is Required" xml:space="preserve">
+    <value>كمية العميل مطلوبة</value>
+  </data>
+  <data name="Customer Qty Price" xml:space="preserve">
+    <value>سعر الكمية للعميل</value>
+  </data>
+  <data name="Customer Qty Price Is Required" xml:space="preserve">
+    <value>سعر الكمية للعميل مطلوبة</value>
+  </data>
+  <data name="Customer Total Price" xml:space="preserve">
+    <value>إجمالي السعر للعميل</value>
+  </data>
+  <data name="Customer Total Price Is Required" xml:space="preserve">
+    <value>إجمالي السعر للعميل مطلوب</value>
+  </data>
+  <data name="Customer Type" xml:space="preserve">
+    <value>نوع العميل</value>
+  </data>
+  <data name="Customer Type Is Required" xml:space="preserve">
+    <value>نوع العميل مطلوب</value>
+  </data>
+  <data name="Customer Unit Price" xml:space="preserve">
+    <value>سعر الوحدة للعميل</value>
+  </data>
+  <data name="Customer Unit Price Is Required" xml:space="preserve">
+    <value>سعرالوحدة للعميل مطلوبة</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="Date Is Required" xml:space="preserve">
+    <value>التاريخ مطلوب</value>
+  </data>
+  <data name="Deposit No" xml:space="preserve">
+    <value>رقم الايداع</value>
+  </data>
+  <data name="Deposit No Is Required" xml:space="preserve">
+    <value>رقم الايداع مطلوب</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>ملاحظات</value>
+  </data>
+  <data name="Driver" xml:space="preserve">
+    <value>السائق</value>
+  </data>
+  <data name="Driver Is Required" xml:space="preserve">
+    <value>السائق مطلوب</value>
+  </data>
+  <data name="Driver Name" xml:space="preserve">
+    <value>إسم السائق</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>البريد الالكتروني</value>
+  </data>
+  <data name="Email Is Required" xml:space="preserve">
+    <value>البريد الالكتروني مطلوب</value>
+  </data>
+  <data name="English Name" xml:space="preserve">
+    <value>الاسم الانجليزي</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>فاكس</value>
+  </data>
+  <data name="Fee" xml:space="preserve">
+    <value>الرسوم</value>
+  </data>
+  <data name="First Period Balance" xml:space="preserve">
+    <value>الرصيد الحالي</value>
+  </data>
+  <data name="First Period Balance Is Required" xml:space="preserve">
+    <value>الرصيد الحالي مطلوب</value>
+  </data>
+  <data name="Full Name" xml:space="preserve">
+    <value>الاسم الكامل</value>
+  </data>
+  <data name="Full Name Is Required" xml:space="preserve">
+    <value>الاسم الكامل مطلوب</value>
+  </data>
+  <data name="Innvoice No" xml:space="preserve">
+    <value>رقم الفاتورة</value>
+  </data>
+  <data name="Innvoice No Is Required" xml:space="preserve">
+    <value>رقم الفاتورة مطلوب</value>
+  </data>
+  <data name="Invalid Target Price; Max 18 digits" xml:space="preserve">
+    <value>من فضك اكتب القيمة / المبلغ بطريقة صحيحة</value>
+  </data>
+  <data name="Invalid Target Price; Maximum Two Decimal Points." xml:space="preserve">
+    <value>من فضك اكتب القيمة / المبلغ بطريقة صحيحة من 0 الي 1000000</value>
+  </data>
+  <data name="Must Be Email Aderess" xml:space="preserve">
+    <value>يجب ان يكون بريد الكتروني</value>
+  </data>
+  <data name="Must Be Email Adress" xml:space="preserve">
+    <value>يجب أن يكون بريد الكتروني صحيح</value>
+  </data>
+  <data name="Must Be Phone Number" xml:space="preserve">
+    <value>رقم الجوال مطلوب</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="Name Is Required" xml:space="preserve">
+    <value>السم مطلوب</value>
+  </data>
+  <data name="Oil80 QTY" xml:space="preserve">
+    <value>كمية بنزين 80</value>
+  </data>
+  <data name="Oil80 QTY Is Required" xml:space="preserve">
+    <value>كمية بنزين 80 مطلوبة</value>
+  </data>
+  <data name="Oil80 Total Price" xml:space="preserve">
+    <value>إجمالي سعر بنزين 80</value>
+  </data>
+  <data name="Oil80 Total Price Is Required" xml:space="preserve">
+    <value>إجمالي سعر بنزين 80 مطلوبة</value>
+  </data>
+  <data name="Oil80 Unit Price" xml:space="preserve">
+    <value>سعر وحدة بنزين 80</value>
+  </data>
+  <data name="Oil80 Unit Price Is Required" xml:space="preserve">
+    <value>سعر وحدة بنزين 80 مطلوبة</value>
+  </data>
+  <data name="Oil92 QTY" xml:space="preserve">
+    <value>كمية بنزين 92</value>
+  </data>
+  <data name="Oil92 QTY Is Required" xml:space="preserve">
+    <value>كمية بنزين 92 مطلوبة</value>
+  </data>
+  <data name="Oil92 Total Price" xml:space="preserve">
+    <value>إجمالي سعر بنزين 92</value>
+  </data>
+  <data name="Oil92 Total Price Is Required" xml:space="preserve">
+    <value>إجمالي سعر بنزين 92 مطلوبة</value>
+  </data>
+  <data name="Oil92 Unit Price" xml:space="preserve">
+    <value>سعر وحدة بنزين 92</value>
+  </data>
+  <data name="Oil92 Unit Price Is Required" xml:space="preserve">
+    <value>سعر وحدة بنزين 92 مطلوبة</value>
+  </data>
+  <data name="Oil95 QTY" xml:space="preserve">
+    <value>كمية بنزين 95</value>
+  </data>
+  <data name="Oil95 QTY Is Required" xml:space="preserve">
+    <value>كمية بنزين 95 مطلوبة</value>
+  </data>
+  <data name="Oil95 Total Price" xml:space="preserve">
+    <value>إجمالي سعر بنزين 95</value>
+  </data>
+  <data name="Oil95 Total Price Is Required" xml:space="preserve">
+    <value>إجمالي سعر بنزين 95 مطلوبة</value>
+  </data>
+  <data name="Oil95 Unit Price" xml:space="preserve">
+    <value>سعر وحدة بنزين 95</value>
+  </data>
+  <data name="Oil95 Unit Price Is Required" xml:space="preserve">
+    <value>سعر وحدة بنزين 95 مطلوبة</value>
+  </data>
+  <data name="Opening Balance" xml:space="preserve">
+    <value>الرصيد الافتتاحي</value>
+  </data>
+  <data name="Opening Balance Date" xml:space="preserve">
+    <value>تاريخ الرصيد الافتتاحي</value>
+  </data>
+  <data name="Opening Balance Date Is Required" xml:space="preserve">
+    <value>تاريخ الرصيد الافتتاحي مطلوب</value>
+  </data>
+  <data name="Opening Balance Is Required" xml:space="preserve">
+    <value>الرصيد الافتتاحي مطلوب</value>
+  </data>
+  <data name="Opening Balance State" xml:space="preserve">
+    <value>حالة الرصيد الافتتاحي</value>
+  </data>
+  <data name="Opening Balance State Is Required" xml:space="preserve">
+    <value>حالة الرصيد الافتتاحي مطلوبة</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>كلمة المرور</value>
+  </data>
+  <data name="Password Is Required" xml:space="preserve">
+    <value>كلمة المرور مطلوبة</value>
+  </data>
+  <data name="Phone Number" xml:space="preserve">
+    <value>رقم الجوال</value>
+  </data>
+  <data name="Phone Number Is Required" xml:space="preserve">
+    <value>يجب أن يكون رقم جوال</value>
+  </data>
+  <data name="Qty" xml:space="preserve">
+    <value>الكمية</value>
+  </data>
+  <data name="Qty Is Required" xml:space="preserve">
+    <value>الكمية مطلوبة</value>
+  </data>
+  <data name="Qty Price" xml:space="preserve">
+    <value>سعر الكمية</value>
+  </data>
+  <data name="Qty Price Is Required" xml:space="preserve">
+    <value>سعر الكمية مطلوب</value>
+  </data>
+  <data name="Remember me?" xml:space="preserve">
+    <value>تذكرني</value>
+  </data>
+  <data name="Responsible Person" xml:space="preserve">
+    <value>الشخص المسئول</value>
+  </data>
+  <data name="Responsible Person Is Required" xml:space="preserve">
+    <value>الشخص المسئول مطلوب</value>
+  </data>
+  <data name="Sale Unit Price" xml:space="preserve">
+    <value>سعر بيع الوحدة</value>
+  </data>
+  <data name="Sale Unit Price Is Required" xml:space="preserve">
+    <value>سعر بيع الوحدة مطلوبة</value>
+  </data>
+  <data name="Solar QTY" xml:space="preserve">
+    <value>كمية السولار</value>
+  </data>
+  <data name="Solar QTY Is Required" xml:space="preserve">
+    <value>كمية السولار مطلوبة</value>
+  </data>
+  <data name="Solar Total Price" xml:space="preserve">
+    <value>إجمالي سعر السولار</value>
+  </data>
+  <data name="Solar Total Price Is Required" xml:space="preserve">
+    <value>إجمالي سعر السولار مطلوبة</value>
+  </data>
+  <data name="Solar Unit Price" xml:space="preserve">
+    <value>سعر وحدة السولار</value>
+  </data>
+  <data name="Solar Unit Price Is Required" xml:space="preserve">
+    <value>سعر وحدة السولار مطلوبة</value>
+  </data>
+  <data name="Station" xml:space="preserve">
+    <value>المحطة</value>
+  </data>
+  <data name="Station Is Required" xml:space="preserve">
+    <value>المحطة مطلوبة</value>
+  </data>
+  <data name="Stock Id" xml:space="preserve">
+    <value>كود المستودع</value>
+  </data>
+  <data name="Stock Name" xml:space="preserve">
+    <value>اسم المستودع</value>
+  </data>
+  <data name="Stock Name English" xml:space="preserve">
+    <value>الاسم الانجليزي</value>
+  </data>
+  <data name="Stock Name Is Required" xml:space="preserve">
+    <value>اسم المستودع مطلوب</value>
+  </data>
+  <data name="Stock Transport Amount" xml:space="preserve">
+    <value>إجمالي تكبفة النقل</value>
+  </data>
+  <data name="Stock Transport Amount Is Required" xml:space="preserve">
+    <value>إجمالي تكبفة النقل مطلوبة</value>
+  </data>
+  <data name="Stock Transport Unit" xml:space="preserve">
+    <value>تكلفة نقل الوحدة</value>
+  </data>
+  <data name="Stock Transport Unit Is Required" xml:space="preserve">
+    <value>تكلفة نقل الوحدة مطلوبة</value>
+  </data>
+  <data name="Stock Unit Cost" xml:space="preserve">
+    <value>تكلفة نقل الطن</value>
+  </data>
+  <data name="Stock Unit Cost Is Required" xml:space="preserve">
+    <value>تكلفة نقل الطن مطلوبة</value>
+  </data>
+  <data name="Tax" xml:space="preserve">
+    <value>الضرائب</value>
+  </data>
+  <data name="Telephone" xml:space="preserve">
+    <value>الجوال</value>
+  </data>
+  <data name="Telephone Is Required" xml:space="preserve">
+    <value>الجوال مطلوب</value>
+  </data>
+  <data name="Total Price" xml:space="preserve">
+    <value>إجمالي السعر</value>
+  </data>
+  <data name="Total Price Is Required" xml:space="preserve">
+    <value>إجمالي السعر مطلوبة</value>
+  </data>
+  <data name="Unit Cost" xml:space="preserve">
+    <value>تكلفة نقل الوحدة</value>
+  </data>
+  <data name="Unit Price" xml:space="preserve">
+    <value>سعر الوحدة من منطقة الشحن</value>
+  </data>
+  <data name="Unit Price Is Required" xml:space="preserve">
+    <value>سعر الوحدة من منطقة الشحن مطلوبة</value>
+  </data>
+  <data name="Unti Cost Is Required" xml:space="preserve">
+    <value>تكلفة نقل الوحدة مطلوبة</value>
+  </data>
+</root>

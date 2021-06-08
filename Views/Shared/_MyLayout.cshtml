@@ -1,0 +1,221 @@
+﻿
+<!DOCTYPE html>
+
+<html id="MainHtml" dir="@(System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft? "rtl" : "ltr")">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <title>AcPro</title>
+
+    @if (Common.Current.IsEnglish)
+    {
+        @Styles.Render(BundleConfig.dbCssBundle)
+    }
+    else
+    {
+        @Styles.Render(BundleConfig.dbCssBundleAr)
+    }
+    @*@Scripts.Render("~/bundles/modernizr")*@
+    @Scripts.Render(BundleConfig.dbJsBundle)
+    @*@Scripts.Render(BundleConfig.JsBundle)*@
+ 
+</head>
+<body class="sidebar-xs">
+    @if (string.IsNullOrEmpty(Common.MW.Cstr(Session["LoginedUserName"])))
+    {
+        Response.Redirect("~/Login/LogIn");
+    }
+    else
+    {
+        <text>
+            <script>
+                $(document).ready(function () {
+                    $("#LoginedUsername").text("@Common.MW.Cstr(Session["LoginedUserName"])")
+                })
+            </script>
+        </text>
+    }
+
+
+
+    <div class="navbar navbar-expand-md navbar-dark">
+        <div class="navbar-brand">
+
+            <a href="~/Home/Index" class="d-inline-block">
+                <img src="../acpro_html/assets/images/User.jpg" alt="">
+            </a>
+        </div>
+
+        <div class="d-md-none">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
+                <i class="icon-tree5"></i>
+            </button>
+            <button class="navbar-toggler sidebar-mobile-main-toggle" type="button">
+                <i class="icon-paragraph-justify3"></i>
+            </button>
+            <button class="navbar-toggler sidebar-mobile-component-toggle" type="button">
+                <i class="icon-unfold"></i>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-mobile">
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="#" class="navbar-nav-link sidebar-control sidebar-secondary-toggle d-none d-md-block">
+                        <i class="far fa-bars"></i>
+                    </a>
+                </li>
+            </ul>
+
+
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item dropdown">
+                    <a href="#" class="navbar-nav-link">
+                        <i class="icon-bell2"></i>
+                        <span class="d-md-none ml-2">التبيهات</span>
+                        <span class="badge  border-white ml-auto ml-md-0">@Html.Action("x", "Stocks").ToString()</span>
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown dropdown-user">
+                    <a href="#" class="navbar-nav-link d-flex align-items-center dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <img src="../acpro_html/assets/images/user.jpg" class="rounded-circle mr-2" alt="" height="34">
+                        <span id="LoginedUsername"></span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="#" class="dropdown-item"><i class="icon-user"></i> الملف الشخصي</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="~/Login/RecoverPassword" class="dropdown-item"><i class="icon-key"></i> تغيير كلمة السر </a>
+                        @*<a href="~/Login/Login" class="dropdown-item"><i class="icon-switch2"></i> تسجيل الخروج</a>*@
+
+                        <a href="@Url.Action("Logout", "Login")" class="dropdown-item">
+                            <i class="icon-switch2"></i> تسجيل الخروج
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <!-- /main navbar -->
+    <!-- Page content -->
+
+    <div class="page-content h-100">
+
+        <!-- Sidebar -->
+        <div class="sidebar sidebar-light sidebar-secondary sidebar-expand-md">
+
+            <!-- Sidebar mobile toggler -->
+            <div class="sidebar-mobile-toggler text-center">
+                <a href="#" class="sidebar-mobile-secondary-toggle">
+                    <i class="icon-arrow-left8"></i>
+                </a>
+
+                <span class="font-weight-semibold">Menu</span>
+                <a href="#" class="sidebar-mobile-expand">
+                    <i class="icon-screen-full"></i>
+                    <i class="icon-screen-normal"></i>
+                </a>
+            </div>
+            <!-- /sidebar mobile toggler -->
+            <!-- Sidebar content -->
+            <div class="sidebar-content">
+
+                <!-- Sub navigation -->
+                <div class="card">
+                    <div class="card-header bg-transparent">
+
+                        <span class="text-uppercase font-size-sm font-weight-semibold">@Resources.PagesResource.Menu</span>
+                    </div>
+
+                    <div class="card-body p-0">
+                        @{
+                            Html.RenderAction("AddMenu", "Home");
+
+                        }
+
+                    </div>
+                </div>
+                <!-- /sub navigation -->
+
+            </div>
+            <!-- /sidebar content -->
+
+        </div>
+        <!-- /Sidebar -->
+        <!-- Main content -->
+        <div class="content-wrapper">
+
+            <!-- Page header -->
+            <div class="page-header page-header-light">
+
+
+                <div class="page-title d-flex">
+                    <h4><i class="icon-arrow-right6 mr-2"></i><span>@Resources.PagesResource.SystemTitle</span></h4>
+                </div>
+
+                <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+                    <div class="d-flex">
+                        <div class="breadcrumb" id="MenuBreadCrumb" runat="server">
+                            @Html.MvcSiteMap().SiteMapPath()
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /page header -->
+            <!-- Content area -->
+            <div class="content">
+                <!-- Placeholder -->
+
+                @RenderBody()
+
+                <!-- /Placeholder -->
+
+            </div>
+            <!-- /content area -->
+
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+    <div class="modal fade" id="exampleModal" data-id="3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" vertical-align="middle" val="3">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="exampleModalLabel">Save Data?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body p-0">
+                        <div id="partial">
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+
+        });
+
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

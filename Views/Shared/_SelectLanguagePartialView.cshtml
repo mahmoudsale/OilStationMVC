@@ -1,0 +1,24 @@
+﻿@using System.Threading.Tasks
+@using System.Threading
+@{
+    var Lang = Thread.CurrentThread.CurrentCulture.DisplayName;
+}
+<li class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-user"></span>
+        <strong>@Lang</strong>
+        <span class="glyphicon glyphicon-chevron-down"></span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        @using (Html.BeginForm("SetLanguage", "Home", new { returnUrl = @Context.Request.Path }, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal" }))
+        {
+            <input type="submit" name="culture" value="en" class="dropdown-item dropdown-footer" />
+        }
+        @using (Html.BeginForm("SetLanguage", "Home", new { returnUrl = @Context.Request.Path }, FormMethod.Post, htmlAttributes: new { @class = "form-horizontal" }))
+        {
+            <input type="submit" name="culture" value="ar-EG" class="dropdown-item dropdown-footer" />
+        }
+        @*<form id="selectLanguage" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path" method="post" class="form-horizontal" role="form"></form>
+        <form id="selectLanguage" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path" method="post" class="form-horizontal" role="form"></form>*@
+    </div>
+</li>

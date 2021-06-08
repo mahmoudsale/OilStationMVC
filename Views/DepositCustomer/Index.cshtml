@@ -1,0 +1,294 @@
+﻿@model OilStationMVC.Models.DepositCustomer
+@using OilStationMVC.CustomHtmlHelper
+@using OilStationMVC.Controllers
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<div class="flex-fill overflow-auto">
+    <div class="card">
+        <div class="nav-tabs-responsive bg-light border-top">
+            <div class="alert alert-success alert-bordered d-none " clientidmode="Static" id="ActionStatus" runat="server">gg</div>
+            <ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
+                <li class="nav-item"><a href="#overview" class="nav-link active" data-toggle="tab"><i class="far fa-info mr-1"></i><span id="HTempleteName" runat="server">Create New</span></a></li>
+                <li class="nav-item"><a href="#List" class="nav-link selected" data-toggle="tab"><i class="far fa-file-alt mr-1"></i>List </a></li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <div class="tab - pane fade show active" id="overview">
+                @using (Html.BeginForm("Index", "DepositCustomer", FormMethod.Post))
+                {
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nId)
+                                    @Html.TextBoxFor(m => m.nId, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nId, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nBranchId)
+                                    @Html.TextBoxFor(m => m.nBranchId, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nBranchId, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.JournalType)
+                                    @Html.TextBoxFor(m => m.JournalType, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.JournalType, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.dDate)
+                                    @Html.TextBoxFor(m => m.dDate, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.dDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.sTime)
+                                    @Html.TextBoxFor(m => m.sTime, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sTime, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nCustNo)
+                                    @Html.TextBoxFor(m => m.nCustNo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nCustNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nCustType)
+                                    @Html.TextBoxFor(m => m.nCustType, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nCustType, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nAmount)
+                                    @Html.TextBoxFor(m => m.nAmount, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nAmount, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nCredit)
+                                    @Html.TextBoxFor(m => m.nCredit, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nCredit, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nGhaznaNo)
+                                    @Html.TextBoxFor(m => m.nGhaznaNo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nGhaznaNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.sDesc)
+                                    @Html.TextBoxFor(m => m.sDesc, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sDesc, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nCompany)
+                                    @Html.TextBoxFor(m => m.nCompany, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nCompany, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nDepositNo)
+                                    @Html.TextBoxFor(m => m.nDepositNo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nDepositNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nCarNo)
+                                    @Html.TextBoxFor(m => m.nCarNo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nCarNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nDriverNo)
+                                    @Html.TextBoxFor(m => m.nDriverNo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nDriverNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nInnvoiceNo)
+                                    @Html.TextBoxFor(m => m.nInnvoiceNo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nInnvoiceNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nExpensesTypeNo)
+                                    @Html.TextBoxFor(m => m.nExpensesTypeNo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nExpensesTypeNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nSolarQTY)
+                                    @Html.TextBoxFor(m => m.nSolarQTY, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nSolarQTY, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nUserAdd)
+                                    @Html.TextBoxFor(m => m.nUserAdd, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nUserAdd, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.dUserAddDate)
+                                    @Html.TextBoxFor(m => m.dUserAddDate, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.dUserAddDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nUserEdit)
+                                    @Html.TextBoxFor(m => m.nUserEdit, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nUserEdit, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.dUserEditDate)
+                                    @Html.TextBoxFor(m => m.dUserEditDate, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.dUserEditDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nUserDelete)
+                                    @Html.TextBoxFor(m => m.nUserDelete, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nUserDelete, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.dUserDeleteDate)
+                                    @Html.TextBoxFor(m => m.dUserDeleteDate, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.dUserDeleteDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nShiftNo)
+                                    @Html.TextBoxFor(m => m.nShiftNo, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nShiftNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nIsDeleted)
+                                    @Html.TextBoxFor(m => m.nIsDeleted, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nIsDeleted, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.IsReviewed)
+                                    @Html.TextBoxFor(m => m.IsReviewed, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.IsReviewed, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nOilCustodyType)
+                                    @Html.TextBoxFor(m => m.nOilCustodyType, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nOilCustodyType, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nBalanceState)
+                                    @Html.TextBoxFor(m => m.nBalanceState, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nBalanceState, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <button ID="btn_Save" runat="server" class="btn bg-success" Text=@Resources.PagesResource.btn_Save name="btn_Save"> Save</button>
+                        <button ID="btn_Save" runat="server" class="btn bg-danger" Text=@Resources.PagesResource.btn_Cancel name="btn_Cancel"> Cancel</button>
+                    </div>
+                }
+            </div>
+
+            <div class="tab-pane fade selected" id="List">
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        @{
+
+                            List<Column> columns = OilStationMVC.Models.ControlProperties.ColumnsProperties(@Request.QueryString["MenuId"].ToString());
+                            Grid.columnNameAndCaption = columns;
+                            Grid.routeValues = new { Id = 2 };
+                            Grid.AllowDelete = true;
+                            Grid.AllowEdit = true;
+                            Grid.ShowEditAsPopup = true;
+                            Grid.KeyColumn = "nId";
+                            Grid.Controller = "DepositCustomer";
+                            Grid.ActionEdit = "EditRow";
+                            Grid.ActionEditPopup = "Edit";
+                            @*@Html.MyGrid("ContGrid", ((DepositCustomerController)this.ViewContext.Controller).List())*@
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" data-id="3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" vertical-align="middle" val="3">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalLabel">Save Data?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card-body p-0">
+                    <div id="partial">
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function ShowEditPopup(Action,Controller,val) {
+          var link = '@Url.Action("Action", "Controller", new { id = "-1" })';
+        link = link.replace("-1", val);
+        link = link.replace("Action", Action);
+        link = link.replace("Controller", Controller);
+        $('#exampleModal #partial').load(link);
+        $('#exampleModal').modal('show');
+    }
+
+
+    function CalcInvoice() {
+        //var x = $("#Weight").val();
+        //var y = $("#Rate").val();
+        //var total = x * y;
+        //$("#Freight").val(total);
+        alert("ss");
+    }
+        function GetCustCredit() {
+            var Id = $("#nCustNo").val();
+            $.ajax({
+                url: "/CommonController/GetCustCredit", //Your path should be here
+                data: { Id: Id },
+                type: "post",
+                success: function (data) {
+                    $('#nCredit').val(data)
+                }
+            });
+        }
+  
+
+
+
+</script>
+

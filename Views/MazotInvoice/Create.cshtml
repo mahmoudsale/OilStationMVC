@@ -1,0 +1,636 @@
+﻿<style>
+    .pt-3-half {
+        padding-top: 1.4rem;
+    }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<style>
+    body {
+        color: #404E67;
+        background: #F5F7FA;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .table-wrapper {
+        width: 700px;
+        margin: 30px auto;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    }
+
+    .table-title {
+        padding-bottom: 10px;
+        margin: 0 0 10px;
+    }
+
+        .table-title h2 {
+            margin: 6px 0 0;
+            font-size: 22px;
+        }
+
+        .table-title .add-new {
+            float: right;
+            height: 30px;
+            font-weight: bold;
+            font-size: 12px;
+            text-shadow: none;
+            min-width: 100px;
+            border-radius: 50px;
+            line-height: 13px;
+        }
+
+            .table-title .add-new i {
+                margin-right: 4px;
+            }
+
+    table.table {
+        table-layout: fixed;
+    }
+
+        table.table tr th, table.table tr td {
+            border-color: #e9e9e9;
+        }
+
+        table.table th i {
+            font-size: 13px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        table.table th:last-child {
+            width: 100px;
+        }
+
+        table.table td a {
+            cursor: pointer;
+            display: inline-block;
+            margin: 0 5px;
+            min-width: 24px;
+        }
+
+            table.table td a.add {
+                color: #27C46B;
+            }
+
+            table.table td a.edit {
+                color: #FFC107;
+            }
+
+            table.table td a.delete {
+                color: #E34724;
+            }
+
+        table.table td i {
+            font-size: 19px;
+        }
+
+        table.table td a.add i {
+            font-size: 24px;
+            margin-right: -1px;
+            position: relative;
+            top: 3px;
+        }
+
+        table.table .form-control {
+            height: 32px;
+            line-height: 32px;
+            box-shadow: none;
+            border-radius: 2px;
+        }
+
+            table.table .form-control.error {
+                border-color: #f50000;
+            }
+
+        table.table td .add {
+            display: none;
+        }
+</style>
+<link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css" rel="stylesheet" />
+
+ 
+
+@model  OilStationMVC.Models.MazotInvoice
+@using OilStationMVC.CommonFolder
+@using OilStationMVC.Helper;
+@using OilStationMVC.Views.Shared.Resources
+@{
+    var JournalType = OilStationMVC.Helper.ObjectConverter.CInt(ViewBag.JournalType);
+    var InvoiceNo = OilStationMVC.Helper.ObjectConverter.CInt(ViewBag.InvoiceNo);
+
+}
+@{
+    IDictionary<string, string> backToListRout = new Dictionary<string, string>();
+    backToListRout.Add(new KeyValuePair<string, string>("JournalType", @JournalType.ToString()));
+
+    IDictionary<string, string> detailsRoute = new Dictionary<string, string>();
+    detailsRoute.Add(new KeyValuePair<string, string>("JournalType", @JournalType.ToString()));
+    detailsRoute.Add(new KeyValuePair<string, string>("InvoiceNo", InvoiceNo.ToString()));
+}
+@{
+    string JournalId = OilStationMVC.Helper.ObjectConverter.Cstr(ViewBag.JournalType);
+    if (JournalId == "3")
+    {
+        ViewData["Title"] = @SiteResource.Create_New_Mazot_Invoice;
+    }
+    if (JournalId == "20")
+    {
+        ViewData["Title"] = @SiteResource.Create_New_Mazot_Customer_Invoice;
+    }
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header  ">
+                <h3 class="card-title ">@ViewData["Title"] </h3>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            @Html.HiddenFor(model => model.JournalType, htmlAttributes: new { @class = "control-label", @Value = JournalType })
+                            @Html.LabelFor(model => model.InnvoiceNo, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.InnvoiceNo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.InnvoiceNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.dDate, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.dDate, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.dDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.CompanyId, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.DropDownListFor(model => model.CompanyId,
+                                         Lookups.CompanyLst(),
+                                         SiteResource.Please_Select,
+                                         new { @class = "form-control"  })
+                                @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.ChargeAreaId, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.DropDownListFor(model => model.ChargeAreaId,
+                                         Lookups.ChargeAreaLst(),
+                                         SiteResource.Please_Select,
+                                         new { @class = "form-control"  })
+                                @Html.ValidationMessageFor(model => model.ChargeAreaId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.ChargeCustomerId, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.DropDownListFor(model => model.ChargeCustomerId,
+                                         Lookups.Customers(),
+                                         SiteResource.Please_Select,
+                                         new { @class = "form-control"  })
+                                @Html.ValidationMessageFor(model => model.ChargeCustomerId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.CarId, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.DropDownListFor(model => model.CarId,
+                                         Lookups.CarLst(),
+                                         SiteResource.Please_Select,
+                                         new { @class = "form-control"  })
+                                @Html.ValidationMessageFor(model => model.CarId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.DriverId, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.DropDownListFor(model => model.DriverId,
+                                         Lookups.DriverLst(),
+                                         SiteResource.Please_Select,
+                                         new { @class = "form-control"  })
+                                @Html.ValidationMessageFor(model => model.DriverId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.UnitPrice, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.Qty, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Qty, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Qty, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.QtyPrice, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.QtyPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.QtyPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.Fee, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Fee, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Fee, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.Tax, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Tax, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Tax, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.TotalPrice, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-8">
+                            @Html.LabelFor(model => model.Desc, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Desc, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Desc, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <!-- Editable table -->
+                @*<div class="card">
+                <h4 class="card-header text-center font-weight-bold text-uppercase py-1">Invoice Details</h4>
+                <div class="card-body">
+                    <div id="table" class="table-editable">
+                        <span class="table-add float-right mb-1 mr-1">
+                            <a href="#!" class="text-success">
+                                <i class="fas fa-plus fa-2x" aria-hidden="true"></i>
+                            </a>
+                        </span>
+                        <table class="table table-bordered table-responsive-md table-striped text-center">
+                            <thead>
+                                <tr>
+
+                                    <th>@SiteResource.Customer</th>
+                                    <th>Unit Price</th>
+                                    <th>Quantity</th>
+                                    <th>Fees</th>
+                                    <th>Total Price</th>
+                                    <th>Area Transport</th>
+                                    <th>Transport Unit</th>
+                                    <th>Transport Amount</th>
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>*@
+                <!-- Editable table -->
+
+                <div class="card-footer">
+                    <input type="submit" value="@SiteResource.Save" class="btn btn-primary" />
+                    @Html.ActionLink(SiteResource.Back_To_List, "Index", new { JournalType = @JournalType }, new { @class = "btn btn-default" })
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/assets/src/ManagerJs.js"></script>
+    <script src="~/assets/src/Invoice.js"></script>
+    <script src="~/assets/src/MazotInvoice.js"></script>
+
+
+    <script>
+        const $tableID = $('#table');
+        const $BTN = $('#export-btn');
+        const $EXPORT = $('#export');
+        const tr0 = ` <tr class="hide"> <td class="pt-3-half" contenteditable="false">
+                      @Html.DropDownListFor(model => model.lstDetails[0].CustomerId,
+                                             Lookups.Customers(),
+                                             SiteResource.Please_Select,
+                                             new { @class = "form-control"  })
+                     @Html.ValidationMessageFor(model => model.lstDetails[0].CustomerId, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[0].UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[0].UnitPrice, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[0].Qty, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[0].Qty, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[0].Fee, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[0].Fee, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[0].TotalPrice, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[0].TotalPrice, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.DropDownListFor(model => model.lstDetails[0].AreaTransportId,
+                                             Lookups.AreaTransportLST(),
+                                             SiteResource.Please_Select,
+                                             new { @class = "form-control"  })
+                     @Html.ValidationMessageFor(model => model.lstDetails[0].AreaTransport, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[0].AreaTransportUnit, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[0].AreaTransportUnit, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[0].AreaTransportAmount, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[0].AreaTransportAmount, "", new { @class = "text-danger" })
+                 </td>
+
+                 <td>
+                     <span class="table-remove">
+                         <button type="button"
+                                 class="btn btn-danger btn-rounded btn-sm my-0">
+                             Remove
+                         </button>
+                     </span>
+                 </td> </tr>`;
+
+         const tr1 = ` <tr class="hide"> <td class="pt-3-half" contenteditable="false">
+                     @Html.DropDownListFor(model => model.lstDetails[1].CustomerId,
+                                             Lookups.Customers(),
+                                             SiteResource.Please_Select,
+                                             new { @class = "form-control"  })
+                     @Html.ValidationMessageFor(model => model.lstDetails[1].CustomerId, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[1].UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[1].UnitPrice, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[1].Qty, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[1].Qty, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[1].Fee, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[1].Fee, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[1].TotalPrice, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[1].TotalPrice, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.DropDownListFor(model => model.lstDetails[1].AreaTransportId,
+                                             Lookups.Customers(),
+                                             SiteResource.Please_Select,
+                                             new { @class = "form-control"  })
+                     @Html.ValidationMessageFor(model => model.lstDetails[1].AreaTransport, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[1].AreaTransportUnit, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[1].AreaTransportUnit, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[1].AreaTransportAmount, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[1].AreaTransportAmount, "", new { @class = "text-danger" })
+                 </td>
+
+                 <td>
+                     <span class="table-remove">
+                         <button type="button"
+                                 class="btn btn-danger btn-rounded btn-sm my-0">
+                             Remove
+                         </button>
+                     </span>
+                 </td> </tr>`;
+
+         const tr2 = ` <tr class="hide"> <td class="pt-3-half" contenteditable="false">
+                      @Html.DropDownListFor(model => model.lstDetails[2].CustomerId,
+                                             Lookups.Customers(),
+                                             SiteResource.Please_Select,
+                                             new { @class = "form-control"  })
+                     @Html.ValidationMessageFor(model => model.lstDetails[2].CustomerId, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[2].UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[2].UnitPrice, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[2].Qty, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[2].Qty, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[2].Fee, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[2].Fee, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[2].TotalPrice, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[2].TotalPrice, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.DropDownListFor(model => model.lstDetails[2].AreaTransportId,
+                                             Lookups.Customers(),
+                                             SiteResource.Please_Select,
+                                             new { @class = "form-control"  })
+                     @Html.ValidationMessageFor(model => model.lstDetails[2].AreaTransport, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[2].AreaTransportUnit, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[2].AreaTransportUnit, "", new { @class = "text-danger" })
+                 </td>
+                 <td class="pt-3-half" contenteditable="false">
+                     @Html.EditorFor(model => model.lstDetails[2].AreaTransportAmount, new { htmlAttributes = new { @class = "form-control" } })
+                     @Html.ValidationMessageFor(model => model.lstDetails[2].AreaTransportAmount, "", new { @class = "text-danger" })
+                 </td>
+                 <td>
+                     <span class="table-remove">
+                         <button type="button"
+                                 class="btn btn-danger btn-rounded btn-sm my-0">
+                             Remove
+                         </button>
+                     </span>
+                 </td> </tr>`;
+
+
+        $('.table-add').on('click', 'i', () => {
+
+            const $clone = $tableID.find('tbody tr').last().clone(true).removeClass('hide table-line');
+
+            if ($tableID.find('tbody tr').length === 0) {
+
+                $('tbody').append(tr0);
+            }
+            else if ($tableID.find('tbody tr').length === 1) {
+                $('tbody').append(tr1);
+            }
+          else  if ($tableID.find('tbody tr').length === 2) {
+                $('tbody').append(tr2);
+            }
+            //else {
+
+            //    var Index = $tableID.find('tbody tr').length;
+            //    //AddNewRow();
+            //    //$tableID.find('table').append($clone);
+            //}
+
+        });
+
+        $tableID.on('click', '.table-remove', function () {
+
+            if ($tableID.find('tbody tr').length === 1) {
+
+            }
+            else {
+                $(this).parents('tr').detach();
+            }
+
+        });
+
+        $tableID.on('click', '.table-up', function () {
+
+            const $row = $(this).parents('tr');
+
+            if ($row.index() === 0) {
+                return;
+            }
+
+            $row.prev().before($row.get(0));
+        });
+
+        $tableID.on('click', '.table-down', function () {
+
+            const $row = $(this).parents('tr');
+            $row.next().after($row.get(0));
+        });
+
+        // A few jQuery helpers for exporting only
+        jQuery.fn.pop = [].pop;
+        jQuery.fn.shift = [].shift;
+
+        $BTN.on('click', () => {
+
+            const $rows = $tableID.find('tr:not(:hidden)');
+            const headers = [];
+            const data = [];
+
+            // Get the headers (add special header logic here)
+            $($rows.shift()).find('th:not(:empty)').each(function () {
+
+                headers.push($(this).text().toLowerCase());
+            });
+
+            // Turn all existing rows into a loopable array
+            $rows.each(function () {
+                const $td = $(this).find('td');
+                const h = {};
+
+                // Use the headers from earlier to name our hash keys
+                headers.forEach((header, i) => {
+
+                    h[header] = $td.eq(i).text();
+                });
+
+                data.push(h);
+            });
+
+            // Output the result
+            $EXPORT.text(JSON.stringify(data));
+        });
+
+
+    </script>
+    <script>
+        var editor; // use a global for the submit and return data rendering in the examples
+
+        $(document).ready(function () {
+            editor = new $.fn.dataTable.Editor({
+                ajax: "../php/staff.php",
+                table: "#example",
+                fields: [{
+                    label: "First name:",
+                    name: "first_name"
+                }, {
+                    label: "Last name:",
+                    name: "last_name"
+                }, {
+                    label: "Position:",
+                    name: "position"
+                }, {
+                    label: "Office:",
+                    name: "office"
+                }, {
+                    label: "Extension:",
+                    name: "extn"
+                }, {
+                    label: "Start date:",
+                    name: "start_date",
+                    type: "datetime"
+                }, {
+                    label: "Salary:",
+                    name: "salary"
+                }
+                ]
+            });
+
+            // Activate an inline edit on click of a table cell
+            $('#example').on('click', 'tbody td:not(:first-child)', function (e) {
+                editor.inline(this);
+            });
+
+            $('#example').DataTable({
+                dom: "Bfrtip",
+                ajax: "../php/staff.php",
+                order: [[1, 'asc']],
+                columns: [
+                    {
+                        data: null,
+                        defaultContent: '',
+                        className: 'select-checkbox',
+                        orderable: false
+                    },
+                    { data: "first_name" },
+                    { data: "last_name" },
+                    { data: "position" },
+                    { data: "office" },
+                    { data: "start_date" },
+                    { data: "salary", render: $.fn.dataTable.render.number(',', '.', 0, '$') }
+                ],
+                select: {
+                    style: 'os',
+                    selector: 'td:first-child'
+                },
+                buttons: [
+                    { extend: "create", editor: editor },
+                    { extend: "edit", editor: editor },
+                    { extend: "remove", editor: editor }
+                ]
+            });
+        });
+    </script>
+}

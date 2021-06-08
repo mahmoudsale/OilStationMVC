@@ -1,0 +1,144 @@
+﻿@model OilStationMVC.Models.Counters
+@using OilStationMVC.CustomHtmlHelper
+@using OilStationMVC.Controllers
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="flex-fill overflow-auto">
+    <div class="card">
+        <div class="nav-tabs-responsive bg-light border-top">
+            <div class="alert alert-success alert-bordered d-none " clientidmode="Static" id="ActionStatus" runat="server">gg</div>
+            <ul class="nav nav-tabs nav-tabs-bottom flex-nowrap mb-0">
+                <li class="nav-item"><a href="#overview" class="nav-link active" data-toggle="tab"><i class="far fa-info mr-1"></i><span id="HTempleteName" runat="server">Create New</span></a></li>
+                <li class="nav-item"><a href="#List" class="nav-link selected" data-toggle="tab"><i class="far fa-file-alt mr-1"></i>List </a></li>
+            </ul>
+        </div>
+        <div class="tab-content">
+
+            <div class="tab - pane fade show active" id="overview">
+                @using (Html.BeginForm("Index", "Counters", FormMethod.Post))
+                {
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nId)
+                                    @Html.TextBoxFor(m => m.nId, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nId, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nBranchId)
+                                    @Html.TextBoxFor(m => m.nBranchId, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nBranchId, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.sName)
+                                    @Html.TextBoxFor(m => m.sName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sName, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.sNameEng)
+                                    @Html.TextBoxFor(m => m.sNameEng, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sNameEng, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nType)
+                                    @Html.TextBoxFor(m => m.nType, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nType, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nValue)
+                                    @Html.TextBoxFor(m => m.nValue, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nValue, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.sDesc)
+                                    @Html.TextBoxFor(m => m.sDesc, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sDesc, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nIsDeleted)
+                                    @Html.TextBoxFor(m => m.nIsDeleted, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nIsDeleted, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <button ID="btn_Save" runat="server" class="btn bg-success" Text=@Resources.PagesResource.btn_Save name="btn_Save"> Save</button>
+                        <button ID="btn_Save" runat="server" class="btn bg-danger" Text=@Resources.PagesResource.btn_Cancel name="btn_Cancel"> Cancel</button>
+                    </div>
+                }
+            </div>
+
+
+
+            <div class="tab-pane fade selected" id="List">
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        @*@{
+                        List<Column> columns = OilStationMVC.Models.ControlProperties.ColumnsProperties(@Request.QueryString["MenuId"].ToString());
+                        Grid.columnNameAndCaption = columns;
+                        Grid.routeValues = new { Id = 2 };
+                        Grid.AllowDelete = true;
+                        Grid.AllowEdit = true;
+                        Grid.ShowEditAsPopup = true;
+                        Grid.KeyColumn = "nId";
+                        Grid.Controller = "ChargeArea";
+                        Grid.ActionEdit = "EditRow";
+                        Grid.ActionEditPopup = "Edit";
+                        @Html.MyGrid("ContGrid", ((ChargeAreaController)this.ViewContext.Controller).List())
+                    }*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" data-id="3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" vertical-align="middle" val="3">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="exampleModalLabel">Save Data?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card-body p-0">
+                    <div id="partial">
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function ShowEditPopup(Action,Controller,val) {
+          var link = '@Url.Action("Action", "Controller", new { id = "-1" })';
+        link = link.replace("-1", val);
+        link = link.replace("Action", Action);
+        link = link.replace("Controller", Controller);
+        $('#exampleModal #partial').load(link);
+        $('#exampleModal').modal('show');
+    }
+</script>

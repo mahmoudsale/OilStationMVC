@@ -1,0 +1,129 @@
+﻿@using OilStationMVC.Views.Shared.Resources
+@using Microsoft.AspNet.Identity
+<div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        @*<div class="image">
+            <img src="~/assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+            <a href="#" class="d-block">@User.Identity.Name</a>
+        </div>*@ 
+        <div class="d-block d-sm-none">   @Html.Partial("_LoginMobile")</div>
+    </div>
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+         with font-awesome or any other icon font library -->
+            <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link active">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        @SiteResource.Dashboards
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="@Url.Action("CommonDashboard", "Home", new { SubledgerTypeId=1,Title=@SiteResource.Customers_Dashboard})" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>@SiteResource.Customers_Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("CommonDashboard", "Home", new { SubledgerTypeId=2,Title=@SiteResource.Companies_Dashboard})" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>@SiteResource.Companies_Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("CommonDashboard", "Home", new { SubledgerTypeId=3,Title=@SiteResource.Cars_Dashboard})" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>@SiteResource.Cars_Dashboard</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            @Html.Action("Menu", "Home", new { area = "" })
+
+            @{
+           
+                if (User != null)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    صلاحيات المستخدمين
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Roles", "Account")" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p> مجوعات المستخدمين</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("UsersList", "Account")" class="nav-link">
+                                        <i class="far fa-circle nav-icon "></i>
+                                        <p>المستخدمين للنظام</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Register", "Account")" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>مستخدم جديد</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                      
+                    }
+                }
+
+            }
+
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon far fa-envelope"></i>
+                    <p>
+                        Mailbox
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Inbox", "Email")" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Inbox</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Compose", "Email")" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Compose</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Read", "Email")" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Read</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+        </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+</div>

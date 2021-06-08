@@ -1,0 +1,47 @@
+﻿@using OilStationMVC.Views.Shared.Resources
+
+@using Microsoft.AspNet.Identity
+<li class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-user"></span>
+        <strong>@User.Identity.GetUserName()</strong>
+        <span class="glyphicon glyphicon-chevron-down"></span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <form method="post">
+            <a asp-controller="Home" asp-action="Index" class="dropdown-item dropdown-footer">User Profile</a>
+        </form>
+        <div class="dropdown-divider"></div>
+        @using (Html.BeginForm("HelpCenter", "Home", null, FormMethod.Get))
+        {
+            <input type="submit" name="name" value="Help Center" class="dropdown-item dropdown-footer" />
+        }
+        <div class="dropdown-divider"></div>
+        @using (Html.BeginForm("About", "Home", null, FormMethod.Get))
+        {
+            <input type="submit" name="name" value="About Us" class="dropdown-item dropdown-footer" />
+        }
+        <div class="dropdown-divider"></div>
+        @using (Html.BeginForm("Contact", "Home", null, FormMethod.Get))
+        {
+            <input type="submit" name="name" value="Contatct Us" class="dropdown-item dropdown-footer" />
+        }
+        <div class="dropdown-divider"></div>
+        @using (Html.BeginForm("AccountSetting", "Home", null, FormMethod.Get))
+        {
+            <input type="submit" name="name" value="Account Setting" class="dropdown-item dropdown-footer" />
+        }
+
+        <div class="dropdown-divider"></div>
+        @using (Html.BeginForm("ChangePassword", "Account", null, FormMethod.Get))
+        {
+            <input type="submit" name="name" value="Change Password" class="dropdown-item dropdown-footer" />
+        }
+        <div class="dropdown-divider"></div>
+        @using (Html.BeginForm("LogOff", "Account", null, FormMethod.Post))
+        {
+            <input type="submit" name="name" value="SignOut" class="dropdown-item dropdown-footer" />
+        }
+
+    </div>
+</li>

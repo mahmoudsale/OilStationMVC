@@ -1,0 +1,86 @@
+﻿@model OilStationMVC.Models.Stock
+@using OilStationMVC.CustomHtmlHelper
+@{
+                /**/
+
+                ViewBag.Title = "EditRow";
+                Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>EditRow</h2>
+
+
+
+<div class="flex-fill overflow-auto">
+    <div class="card">
+        <div class="nav-tabs-responsive bg-light border-top">
+            <div class="alert alert-success alert-bordered d-none " clientidmode="Static" id="ActionStatus" runat="server">gg</div>
+
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="overview">
+                @using (Html.BeginForm("EditRow", "Stock", FormMethod.Post))
+                {
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @*@Html.LabelFor(m => m.nId)*@
+                                    @Html.LabelFor(m => m.nId)
+                                    @Html.TextBoxFor(m => m.nId, new { @class = "form-control " })
+                                    @Html.ValidationMessageFor(m => m.nId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.sName)
+                                    @Html.TextBoxFor(m => m.sName, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.sNameEng)
+                                    @Html.TextBoxFor(m => m.sNameEng, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sNameEng, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.nCost)
+                                    @Html.TextBoxFor(m => m.nCost, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.nCost, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.sAdress)
+                                    @Html.TextBoxFor(m => m.sAdress, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.sAdress, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <button ID="btn_Save" runat="server" class="btn bg-success" Text=@Resources.PagesResource.btn_Cancel name="btn_Save"> Save</button>
+                        <button ID="btn_Cancel" name="btn_Cancel" runat="server" class="btn bg-danger" Text=@Resources.PagesResource.btn_Cancel> Cancel</button>
+
+                    </div>
+                }
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+

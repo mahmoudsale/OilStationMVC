@@ -1,0 +1,80 @@
+﻿@model OilStationMVC.Models.Driver
+@using OilStationMVC.CustomHtmlHelper;
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Driver</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.sName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sNameEng)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sNameEng)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sTel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sTel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sDesc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WebSite)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WebSite)
+        </dd>
+        <dd>
+            @Html.DisplayNameFor(model => model.BeginDate)
+        </dd>
+        <dt>
+            @Html.DisplayFor(model => model.BeginDate)
+        </dt>
+        <dd>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dd>
+        <dt>
+            @*<img src="@Url.Content(Model.Photo)" />*@
+            @if (!string.IsNullOrEmpty(Model.Photo))
+            {
+                @Html.Image(Model.Photo, "sssss");
+            }
+
+      
+        </dt>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { DriverId = Model.nId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

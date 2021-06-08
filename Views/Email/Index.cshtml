@@ -1,0 +1,115 @@
+﻿@*@model OilStationMVC.Models.Prabhu.Email*@
+@using OilStationMVC.CustomHtmlHelper
+@using OilStationMVC.Controllers
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+
+<div class="page-content">
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="card">
+                <div class="card-header header-elements-inline">
+                    <h5 class="card-title"> الإشعارات والمراسلات</h5>
+                    <div class="header-elements">
+                        <button type="button" data-toggle="modal" data-target="#add_not" data-backdrop="static" data-keyboard="false" class="btn bg-teal-300 ml-2"><i class="far fa-bell mr-2"></i> إضافة إشعار جديد </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-xs table-hover">
+                        <thead>
+                            <tr class="bg-slate-300">
+                                <th class="text-nowrap">عنوان الرسالة</th>
+                                <th>الرسالة</th>
+                                <th>التاريخ</th>
+                                <th>الوقت</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>تذكير بتاريخ انتهاء إضافة المتسابقين</td>
+                                <td>بريد إلكتروني، رسالة نصية</td>
+                                <td>عضو، مسابقة الرياض</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-icon"><i class="far fa-paper-plane"></i></button>
+                                </td>
+                                <td class="text-right">
+                                    <div class="list-icons">
+                                        <a data-popup="tooltip" title="تعديل" data-placement="top" href="#" class="list-icons-item text-teal-400"><i class="far fa-pencil"></i></a>
+                                        <a data-popup="tooltip" title="حذف" data-placement="top" href="#" class="list-icons-item text-danger-600"><i class="far fa-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Not modal -->
+<div id="add_not" class="modal fade" tabindex="-1">
+    <div class="modal-dialog ">
+
+        <div class="modal-content">
+            @using (Html.BeginForm("SendEmail", "Email", FormMethod.Post))
+            {
+                <div class="modal-header bg-info">
+                    <h6 class="modal-title"> إضافة إشعار جديد </h6>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="table-responsive border-1 border-teal-300">
+                        <table class="table table-notifications">
+                            <tbody>
+                                <tr>
+                                    <td class="align-top py-0 pr-0 col-md-4">
+                                        <div class="py-2 mr-sm-3">نسخة بريد إلكتروني :</div>
+                                    </td>
+                                    <td class="align-top py-0 pl-0 pr-0">
+                                        @*@Html.mTextBoxFor(m => m.To).CssClass("form-control").Render()*@
+                                        @*<input class="form-control flex-fill w-auto py-2 px-0 border-0 rounded-0 tokenfield" placeholder="عناوين البريد الإلكتروني" type="text">*@
+                                    </td>
+                                </tr>
+                             
+                                <tr>
+                                    <td class="align-top py-0 pr-0 col-md-4">
+                                        <div class="py-2 mr-sm-3">عنوان الموضوع :</div>
+                                    </td>
+                                    <td class="align-top py-0 pl-0 pr-0">
+                                        @*@Html.mTextBoxFor(m => m.Subject).CssClass("form-control").Render()*@
+                                        @*<input class="form-control flex-fill w-auto py-2 px-0 border-0 rounded-0 tokenfield" placeholder="عنوان الموضوع" type="text">*@
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="align-top p-0">
+
+                                        @*@Html.mTextArea().ID("Body").Name("Body").Render()*@
+                                        @*@Html.mTextAreaFor(m => m.Body).Render()*@
+                                        @*@Html.TextAreaFor(m => m.Body, new { @class = "form-control p-20 border-0 rounded-0" })*@
+                                        @*<textarea class="form-control p-20 border-0 rounded-0" placeholder="محتوى الإشعار" rows="5" type="text"></textarea>
+        <textarea class="form-control p-20 border-0 rounded-0" placeholder="محتوى الإشعار" rows="5" type="text"></textarea>*@
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">إلغاء</button>
+                    <input type="submit" name="name" value="send" class="btn btn-success"/>
+         
+                </div>
+            }
+            </div>
+    </div>
+</div>
+<!-- Add Not modal -->
